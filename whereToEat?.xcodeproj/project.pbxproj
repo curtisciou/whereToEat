@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4E7891A61F627E50006CE780 /* EggCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891A51F627E50006CE780 /* EggCollectionViewCell.swift */; };
 		4E7891A71F6288B9006CE780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E78919F1F627BDD006CE780 /* Assets.xcassets */; };
-		4E7891AD1F629890006CE780 /* dataFiliterVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891AC1F629890006CE780 /* dataFiliterVCViewController.swift */; };
+		4E7891AD1F629890006CE780 /* DataFiliterVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891AC1F629890006CE780 /* DataFiliterVCViewController.swift */; };
 		4E7891AF1F629AA8006CE780 /* dataFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891AE1F629AA8006CE780 /* dataFilterTableViewCell.swift */; };
 		4E7891B11F62A185006CE780 /* dataInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891B01F62A185006CE780 /* dataInfoTableViewCell.swift */; };
 		7F0ABBE71F5B03CD00C23A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0ABBE61F5B03CD00C23A71 /* AppDelegate.swift */; };
@@ -52,7 +52,7 @@
 		4E7891A01F627BDD006CE780 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7891A21F627BDD006CE780 /* whereToEat_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = whereToEat_.xcdatamodel; sourceTree = "<group>"; };
 		4E7891A51F627E50006CE780 /* EggCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggCollectionViewCell.swift; sourceTree = "<group>"; };
-		4E7891AC1F629890006CE780 /* dataFiliterVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataFiliterVCViewController.swift; sourceTree = "<group>"; };
+		4E7891AC1F629890006CE780 /* DataFiliterVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFiliterVCViewController.swift; sourceTree = "<group>"; };
 		4E7891AE1F629AA8006CE780 /* dataFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataFilterTableViewCell.swift; sourceTree = "<group>"; };
 		4E7891B01F62A185006CE780 /* dataInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataInfoTableViewCell.swift; sourceTree = "<group>"; };
 		7F0ABBE31F5B03CD00C23A71 /* whereToEat?.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "whereToEat?.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +148,7 @@
 				4E78919F1F627BDD006CE780 /* Assets.xcassets */,
 				4E7891A01F627BDD006CE780 /* LaunchScreen.storyboard */,
 				4E7891A11F627BDD006CE780 /* whereToEat_.xcdatamodeld */,
-				4E7891AC1F629890006CE780 /* dataFiliterVCViewController.swift */,
+				4E7891AC1F629890006CE780 /* DataFiliterVCViewController.swift */,
 			);
 			path = "whereToEat?";
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 				7F0ABC231F5B042300C23A71 /* MapVC.swift in Sources */,
 				7FC651431F6228DF000128E1 /* DifferentCategoryVC.swift in Sources */,
 				4E7891AF1F629AA8006CE780 /* dataFilterTableViewCell.swift in Sources */,
-				4E7891AD1F629890006CE780 /* dataFiliterVCViewController.swift in Sources */,
+				4E7891AD1F629890006CE780 /* DataFiliterVCViewController.swift in Sources */,
 				7F0ABC261F5B042300C23A71 /* AddResturantVC.swift in Sources */,
 				4E7891A61F627E50006CE780 /* EggCollectionViewCell.swift in Sources */,
 				7F0ABC271F5B042300C23A71 /* RestaurantDetailVC.swift in Sources */,
