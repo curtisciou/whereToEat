@@ -8,15 +8,32 @@
 
 import UIKit
 
-class WelcomVC: UIViewController {
+class HomeVC: UIViewController {
     
-    @IBAction func showAddResturantView(_ sender: Any) {
+    @IBOutlet weak var realTimeWeartherImage: UIImageView!
+    
+    @IBAction func showUesrFavorite(_ sender: Any) {
     }
     
-    @IBAction func showTopFiveAndRandom(_ sender: Any) {
+    @IBAction func showRandomPage(_ sender: Any) {
     }
     
-    @IBAction func showPersonalPreferancesView(_ sender: Any) {
+    @IBAction func showRiceCollections(_ sender: Any) {
+    }
+    
+    @IBAction func showFastfoodCollections(_ sender: Any) {
+    }
+    
+    @IBAction func showBreakfarstCollections(_ sender: Any) {
+    }
+    
+    @IBAction func showPastaCollections(_ sender: Any) {
+    }
+    
+    @IBAction func showDessertCollections(_ sender: Any) {
+    }
+    
+    @IBAction func showForeignCollections(_ sender: Any) {
     }
     
     override func viewDidLoad() {

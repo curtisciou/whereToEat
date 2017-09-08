@@ -5,18 +5,10 @@
 //  Created by CurtisCiou on 2017/9/2.
 //  Copyright © 2017年 CurtisCiou. All rights reserved.
 //
+//CAUTION!!! TEST JSON FILE USED
+//NOT NECESSARY DATA
 
 import Foundation
-
-struct Top10Structure:Codable {
-//    var result:Result
-    var Top10Resturant:Result
-}
-
-struct Result:Codable{
-    var uploadDate:String
-    var restaurants:[restaurant]
-}
 
 struct restaurant:Codable {
     var restaurant_name:String
@@ -32,32 +24,13 @@ struct restaurant:Codable {
     var restaurant_socialMedia:String
     var restaurant_top10:String
 }
-//struct Facility:Codable {
-//    var _id:String
-//    var o_tlc_agency_name:String
-//    var o_tlc_agency_category:String
-//    var o_tlc_agency_categorychild:String
-//    var o_tlc_agency_purpose:String
-//    var o_tlc_agency_service:String
-//    var o_tlc_agency_region:String
-//    var o_tlc_agency_opentime:String
-//    var o_tlc_agency_address:String
-//    var o_tlc_agency_phone:String
-//    var o_tlc_agency_fax:String
-//    var o_tlc_agency_email:String
-//    var o_tlc_agency_admincategory:String
-//    var o_tlc_agency_img_front:String
-//    var o_tlc_agency_img_inner:String
-//    var o_tlc_agency_link:String
-//}
-//struct Result:Codable{
-//    var offset:Int
-//    var limit:Int
-//    var count:Int
-//    var sort:String
-//    var results:[Facility]
-//}
 
+struct Result:Codable{
+    var uploadDate:String
+    var restaurants:[restaurant]
+}
 
-
-
+struct Top10Structure:Codable {
+    //    var result:Result
+    var Top10Restaurant:Result
+}
