@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		7F0ABBE71F5B03CD00C23A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0ABBE61F5B03CD00C23A71 /* AppDelegate.swift */; };
 		7F0ABBEC1F5B03CD00C23A71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F0ABBEA1F5B03CD00C23A71 /* Main.storyboard */; };
-		7F0ABBEF1F5B03CD00C23A71 /* whereToEat_.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F0ABBED1F5B03CD00C23A71 /* whereToEat_.xcdatamodeld */; };
-		7F0ABBF11F5B03CD00C23A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F0ABBF01F5B03CD00C23A71 /* Assets.xcassets */; };
-		7F0ABBF41F5B03CD00C23A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F0ABBF21F5B03CD00C23A71 /* LaunchScreen.storyboard */; };
 		7F0ABBFF1F5B03CE00C23A71 /* whereToEat_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0ABBFE1F5B03CE00C23A71 /* whereToEat_Tests.swift */; };
 		7F0ABC0A1F5B03CE00C23A71 /* whereToEat_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0ABC091F5B03CE00C23A71 /* whereToEat_UITests.swift */; };
 		7F0ABC231F5B042300C23A71 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0ABC181F5B042100C23A71 /* MapVC.swift */; };
@@ -46,12 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E78919F1F627BDD006CE780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4E7891A01F627BDD006CE780 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4E7891A21F627BDD006CE780 /* whereToEat_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = whereToEat_.xcdatamodel; sourceTree = "<group>"; };
 		7F0ABBE31F5B03CD00C23A71 /* whereToEat?.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "whereToEat?.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0ABBE61F5B03CD00C23A71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F0ABBEB1F5B03CD00C23A71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7F0ABBEE1F5B03CD00C23A71 /* whereToEat_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = whereToEat_.xcdatamodel; sourceTree = "<group>"; };
-		7F0ABBF01F5B03CD00C23A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7F0ABBF31F5B03CD00C23A71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F0ABBF51F5B03CD00C23A71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F0ABBFA1F5B03CE00C23A71 /* whereToEat?Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "whereToEat?Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0ABBFE1F5B03CE00C23A71 /* whereToEat_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whereToEat_Tests.swift; sourceTree = "<group>"; };
@@ -136,7 +133,9 @@
 				7FC651481F622BF7000128E1 /* DecisionVC.swift */,
 				7FF6C2C91F622D4F009EED43 /* CreateRestaurantVC.swift */,
 				7F0ABC1E1F5B042200C23A71 /* Top10Structure.swift */,
-				7F0ABC171F5B03DB00C23A71 /* supporting files */,
+				4E78919F1F627BDD006CE780 /* Assets.xcassets */,
+				4E7891A01F627BDD006CE780 /* LaunchScreen.storyboard */,
+				4E7891A11F627BDD006CE780 /* whereToEat_.xcdatamodeld */,
 			);
 			path = "whereToEat?";
 			sourceTree = "<group>";
@@ -157,16 +156,6 @@
 				7F0ABC0B1F5B03CE00C23A71 /* Info.plist */,
 			);
 			path = "whereToEat?UITests";
-			sourceTree = "<group>";
-		};
-		7F0ABC171F5B03DB00C23A71 /* supporting files */ = {
-			isa = PBXGroup;
-			children = (
-				7F0ABBF01F5B03CD00C23A71 /* Assets.xcassets */,
-				7F0ABBF21F5B03CD00C23A71 /* LaunchScreen.storyboard */,
-				7F0ABBED1F5B03CD00C23A71 /* whereToEat_.xcdatamodeld */,
-			);
-			path = "supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F0ABBF41F5B03CD00C23A71 /* LaunchScreen.storyboard in Resources */,
 				7F2A2BB91F5BB7950047B989 /* top10Restauran.txt in Resources */,
-				7F0ABBF11F5B03CD00C23A71 /* Assets.xcassets in Resources */,
 				7F0ABBEC1F5B03CD00C23A71 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +296,6 @@
 				7F0ABC231F5B042300C23A71 /* MapVC.swift in Sources */,
 				7FC651431F6228DF000128E1 /* DifferentCategoryVC.swift in Sources */,
 				7F0ABC261F5B042300C23A71 /* AddResturantVC.swift in Sources */,
-				7F0ABBEF1F5B03CD00C23A71 /* whereToEat_.xcdatamodeld in Sources */,
 				7F0ABC271F5B042300C23A71 /* RestaurantDetailVC.swift in Sources */,
 				7F0ABC281F5B042300C23A71 /* Top10Structure.swift in Sources */,
 				7FF6C2CA1F622D4F009EED43 /* CreateRestaurantVC.swift in Sources */,
@@ -355,14 +341,6 @@
 				7F0ABBEB1F5B03CD00C23A71 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7F0ABBF21F5B03CD00C23A71 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7F0ABBF31F5B03CD00C23A71 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -609,12 +587,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7F0ABBED1F5B03CD00C23A71 /* whereToEat_.xcdatamodeld */ = {
+		4E7891A11F627BDD006CE780 /* whereToEat_.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7F0ABBEE1F5B03CD00C23A71 /* whereToEat_.xcdatamodel */,
+				4E7891A21F627BDD006CE780 /* whereToEat_.xcdatamodel */,
 			);
-			currentVersion = 7F0ABBEE1F5B03CD00C23A71 /* whereToEat_.xcdatamodel */;
+			currentVersion = 4E7891A21F627BDD006CE780 /* whereToEat_.xcdatamodel */;
 			path = whereToEat_.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
