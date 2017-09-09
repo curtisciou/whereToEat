@@ -13,6 +13,10 @@ class dataInfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
+    
+    @IBOutlet weak var locationImg: UIImageView!
+    @IBOutlet weak var phoneImg: UIImageView!
+    @IBOutlet weak var timeImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

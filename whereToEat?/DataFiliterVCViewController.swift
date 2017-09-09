@@ -9,14 +9,24 @@
 import UIKit
 
 class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    var sectionArray = ["麥當勞","肯德基","漢堡王"]
-    
+    var prefer: Int = -1
     var allData :Top10Structure?
     var isOpen:[Int] = []
-    var id:[String] = []
+    var cellId:[Int] = []
+    var cellName:[String] = []
+    var cellTime:[String] = []
+    var cellNumber:[String] = []
+    var cellAddress:[String] = []
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var preferImg: UIImageView!
+    
+    @IBOutlet weak var timeImg: UIImageView!
+    @IBOutlet weak var phoneImg: UIImageView!
+    
+    @IBOutlet weak var locationImg: UIImageView!
     func numberOfSections(in tableView: UITableView) -> Int {
-        return (allData?.Top10Restaurant.restaurants.count)!
+        return cellName.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,14 +39,14 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header : dataFilterTableViewCell = tableView.dequeueReusableCell(withIdentifier: "datafilterTableViewCell") as! dataFilterTableViewCell
-            header.name.text = allData?.Top10Restaurant.restaurants[section].restaurant_name
+            header.name.text = cellName[section]
             header.expandBtn.tag = section
-            header.loveButton.tag = section
             header.loveButton.setImage(UIImage(named:"love0"), for: .normal)
-            header.layer.borderWidth = 1.5
-            header.layer.borderColor = UIColor.gray.cgColor
-        let btnTag : Int = Int((allData?.Top10Restaurant.restaurants[section].restaurant_identification)!)!
+        
+        let btnTag : Int = cellId[section] - 1
             header.loveButton.tag = btnTag
+        
+        
         return header
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -44,12 +54,14 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:dataInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "dataInfoTableViewCell", for: indexPath) as! dataInfoTableViewCell
-        cell.address.text = allData?.Top10Restaurant.restaurants[indexPath.section].restaurant_location
-        cell.phoneNumber.text = allData?.Top10Restaurant.restaurants[indexPath.section].restaurant_phone
-        cell.time.text = allData?.Top10Restaurant.restaurants[indexPath.section].restaurant_available_date
-        
-        cell.layer.borderWidth = 1.5
-        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.backgroundColor = UIColor(red:0.97, green:0.98, blue:0.99, alpha:0.95)
+        cell.address.text = cellAddress[indexPath.section]
+        cell.phoneNumber.text = cellNumber[indexPath.section]
+        cell.time.text = cellTime[indexPath.section]
+        cell.timeImg.image = UIImage(named : "time\(prefer)")
+        cell.phoneImg.image = UIImage(named : "phone\(prefer)")
+        cell.locationImg.image = UIImage(named : "location\(prefer)")
+    
         return cell
     }
 //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -66,7 +78,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
-        return 10
+        return 3
     }
     @IBAction func loveIt(_ sender: UIButton) {
         if sender.imageView?.image == UIImage(named : "love0"){
@@ -89,6 +101,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         }
         self.tableView.reloadData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,6 +110,19 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         for _ in 1...count{
             isOpen.append(0)
         }
+        isOpen[0] = 1
+        for i in 0...count-1{
+            if allData?.Top10Restaurant.restaurants[i].restaurant_type == "\(prefer)"{
+                cellName.append((allData?.Top10Restaurant.restaurants[i].restaurant_name)!)
+                cellTime.append((allData?.Top10Restaurant.restaurants[i].restaurant_available_time)!)
+                cellAddress.append((allData?.Top10Restaurant.restaurants[i].restaurant_location
+                    )!)
+                cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
+                cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
+            }
+        }
+        preferImg.image = UIImage(named : "prefer\(prefer)")
+
         // Do any additional setup after loading the view.
     }
 
