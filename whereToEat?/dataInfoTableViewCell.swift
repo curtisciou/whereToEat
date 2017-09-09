@@ -16,6 +16,9 @@ class dataInfoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        phoneNumber.isUserInteractionEnabled = true
+        address.isUserInteractionEnabled = true
+        
     }
 
 

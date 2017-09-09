@@ -10,17 +10,13 @@ import UIKit
 
 class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var sectionArray = ["麥當勞","肯德基","漢堡王"]
-    var nameTest = [["麥當勞","dad","狗"],
-                    ["當勞","貓","sweet"],
-                    ["麥當","dad","山豬"]]
-    var number = ["dad","mom","sweet"]
-    var add = ["狗","貓","山豬"]
-    var isOpen = [1,0,0]
-    var sellecredIndexPath :IndexPath!
     
+    var allData :Top10Structure?
+    var isOpen:[Int] = []
+    var id:[String] = []
     @IBOutlet weak var tableView: UITableView!
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isOpen.count
+        return (allData?.Top10Restaurant.restaurants.count)!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,23 +29,25 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header : dataFilterTableViewCell = tableView.dequeueReusableCell(withIdentifier: "datafilterTableViewCell") as! dataFilterTableViewCell
-            header.name.text = sectionArray[section]
+            header.name.text = allData?.Top10Restaurant.restaurants[section].restaurant_name
             header.expandBtn.tag = section
             header.loveButton.tag = section
-            header.expandBtn.setTitle("ttttt", for: .normal)
             header.loveButton.setImage(UIImage(named:"love0"), for: .normal)
             header.layer.borderWidth = 1.5
             header.layer.borderColor = UIColor.gray.cgColor
+        let btnTag : Int = Int((allData?.Top10Restaurant.restaurants[section].restaurant_identification)!)!
+            header.loveButton.tag = btnTag
         return header
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.section,indexPath.row)
+//        print(indexPath.section,indexPath.row)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:dataInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "dataInfoTableViewCell", for: indexPath) as! dataInfoTableViewCell
-        cell.address.text = nameTest[indexPath.section][2]
-        cell.phoneNumber.text = nameTest[indexPath.section][1]
-        cell.time.text = nameTest[indexPath.section][0]
+        cell.address.text = allData?.Top10Restaurant.restaurants[indexPath.section].restaurant_location
+        cell.phoneNumber.text = allData?.Top10Restaurant.restaurants[indexPath.section].restaurant_phone
+        cell.time.text = allData?.Top10Restaurant.restaurants[indexPath.section].restaurant_available_date
+        
         cell.layer.borderWidth = 1.5
         cell.layer.borderColor = UIColor.gray.cgColor
         return cell
@@ -73,6 +71,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     @IBAction func loveIt(_ sender: UIButton) {
         if sender.imageView?.image == UIImage(named : "love0"){
             sender.setImage(UIImage(named:"love1"), for: .normal)
+            print(sender.tag)
         }else{
             sender.setImage(UIImage(named:"love0"), for: .normal)
         }
@@ -92,7 +91,12 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        parseLocalFile()
+        let count = (allData?.Top10Restaurant.restaurants.count)!
+        for _ in 1...count{
+            isOpen.append(0)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -100,7 +104,17 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    fileprivate func parseLocalFile() {
+        let jsonFilePath:String = Bundle.main.path(forResource: "top10Restauran", ofType: "txt")!
+        print(jsonFilePath)
+        let url:URL = URL(fileURLWithPath: jsonFilePath)
+        do {
+            let jsonData:Data? = try Data(contentsOf: url)
+            allData =  try JSONDecoder().decode(Top10Structure.self, from: jsonData!)
+        } catch let error as NSError {
+            print("\(error)")
+        }
+    }
 
     /*
     // MARK: - Navigation
