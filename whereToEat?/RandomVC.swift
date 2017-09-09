@@ -12,6 +12,8 @@ class RandomVC: UIViewController,UICollectionViewDataSource,UICollectionViewDele
     @IBOutlet weak var collectionView: UICollectionView!
     
     var longPressGesture = UILongPressGestureRecognizer()
+
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 18
     }
@@ -35,13 +37,14 @@ class RandomVC: UIViewController,UICollectionViewDataSource,UICollectionViewDele
         longPressGesture = UILongPressGestureRecognizer(target:self , action: #selector(handLongPress(gesture:)))
         longPressGesture.minimumPressDuration = 1
         self.collectionView.addGestureRecognizer(longPressGesture)
-        
+       
     }
     
     @objc func handLongPress(gesture:UILongPressGestureRecognizer){
         switch gesture.state{
         case UIGestureRecognizerState.began:
             guard let selectedIndexPath  = self.collectionView.indexPathForItem(at: gesture.location(in:self.collectionView)) else{
+                myPlayer.play()
                 break;
             }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath);

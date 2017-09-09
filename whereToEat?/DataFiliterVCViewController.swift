@@ -9,13 +9,13 @@
 import UIKit
 
 class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    var sectionArray = ["number1","number2","number3"]
+    var sectionArray = ["麥當勞","肯德基","漢堡王"]
     var nameTest = [["麥當勞","dad","狗"],
                     ["當勞","貓","sweet"],
                     ["麥當","dad","山豬"]]
     var number = ["dad","mom","sweet"]
     var add = ["狗","貓","山豬"]
-    var isOpen = [0,0,0]
+    var isOpen = [1,0,0]
     var sellecredIndexPath :IndexPath!
     
     @IBOutlet weak var tableView: UITableView!
@@ -35,7 +35,11 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         let header : dataFilterTableViewCell = tableView.dequeueReusableCell(withIdentifier: "datafilterTableViewCell") as! dataFilterTableViewCell
             header.name.text = sectionArray[section]
             header.expandBtn.tag = section
-    
+            header.loveButton.tag = section
+            header.expandBtn.setTitle("ttttt", for: .normal)
+            header.loveButton.setImage(UIImage(named:"love0"), for: .normal)
+            header.layer.borderWidth = 1.5
+            header.layer.borderColor = UIColor.gray.cgColor
         return header
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -43,17 +47,35 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:dataInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "dataInfoTableViewCell", for: indexPath) as! dataInfoTableViewCell
-        cell.address.text = nameTest[indexPath.section][0]
+        cell.address.text = nameTest[indexPath.section][2]
         cell.phoneNumber.text = nameTest[indexPath.section][1]
-        cell.time.text = nameTest[indexPath.section][2]
+        cell.time.text = nameTest[indexPath.section][0]
+        cell.layer.borderWidth = 1.5
+        cell.layer.borderColor = UIColor.gray.cgColor
         return cell
     }
-    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footerView = UIView( CGRect(x:0, y:0, width: tableView.frame.size.width, height:10))
+//        footerView.backgroundColor = UIColor.white
+//
+//        return footerView
+//    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 10
+    }
+    @IBAction func loveIt(_ sender: UIButton) {
+        if sender.imageView?.image == UIImage(named : "love0"){
+            sender.setImage(UIImage(named:"love1"), for: .normal)
+        }else{
+            sender.setImage(UIImage(named:"love0"), for: .normal)
+        }
     }
     @IBAction func expand(_ sender: UIButton) {
         print(sender.tag)
