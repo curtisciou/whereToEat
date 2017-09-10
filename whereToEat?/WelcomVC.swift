@@ -14,10 +14,16 @@ class HomeVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         time.invalidate()
     }
-    @IBOutlet weak var top5: UIImageView!
     
+    
+    @IBAction func showTop5(_ sender: Any) {
+        preferSelect = 8
+        performSegue(withIdentifier: "toPreferVC", sender: nil)
+    }
     
     @IBAction func showUesrFavorite(_ sender: Any) {
+        preferSelect = 7
+        performSegue(withIdentifier: "toPreferVC", sender: nil)
     }
     
     @IBAction func showRandomPage(_ sender: Any) {

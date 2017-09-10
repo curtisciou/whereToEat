@@ -7,7 +7,12 @@
 //
 
 import UIKit
-
+protocol sendResultDelegate{
+    func sendResultName( name:String)
+    func sendResultPhone( phone:String)
+    func sendResultAddress( address:String)
+    func sendResultTime( time:String)
+}
 class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var prefer: Int = -1
     var allData :Top10Structure?
@@ -17,9 +22,14 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     var cellTime:[String] = []
     var cellNumber:[String] = []
     var cellAddress:[String] = []
-    var loveMenu:[Int] = UserDefaults.standard.array(forKey: "loveMenu") as! [Int]
+    var loveMenu:[Int] = []
+    var delegate :sendResultDelegate?
+    var rgb:[(CGFloat,CGFloat,CGFloat,CGFloat)] = [(248,251,253,0.95),(124,180,176,0.07),(186,229,216,0.07),(238,211,88, 0.07),(157, 144,175, 0.07),(242,179,169, 0.07),(108,136,177, 0.1),(43,116,127, 0.1)]
+    
+    @IBOutlet weak var selectBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var topImg: UIImageView!
     @IBOutlet weak var preferImg: UIImageView!
     
     @IBOutlet weak var timeImg: UIImageView!
@@ -42,12 +52,13 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         let header : dataFilterTableViewCell = tableView.dequeueReusableCell(withIdentifier: "datafilterTableViewCell") as! dataFilterTableViewCell
             header.name.text = cellName[section]
             header.expandBtn.tag = section
-            header.loveButton.setImage(UIImage(named:"love0"), for: .normal)
-        
         let btnTag : Int = cellId[section] - 1
             header.loveButton.tag = btnTag
-        
-        
+        if loveMenu.contains(header.loveButton.tag){
+            header.loveButton.setImage(UIImage(named:"love1"), for: .normal)
+        }else{
+            header.loveButton.setImage(UIImage(named:"love0"), for: .normal)
+        }
         return header
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -55,7 +66,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:dataInfoTableViewCell = tableView.dequeueReusableCell(withIdentifier: "dataInfoTableViewCell", for: indexPath) as! dataInfoTableViewCell
-        cell.backgroundColor = UIColor(red:0.97, green:0.98, blue:0.99, alpha:0.95)
+        cell.backgroundColor = UIColor(red:rgb[prefer-1].0/255.0, green:rgb[prefer-1].1/255.0, blue:rgb[prefer-1].2/255.0, alpha:rgb[prefer-1].3)
         cell.address.text = cellAddress[indexPath.section]
         cell.phoneNumber.text = cellNumber[indexPath.section]
         cell.time.text = cellTime[indexPath.section]
@@ -88,8 +99,11 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
 //            print(sender.tag)
         }else{
             sender.setImage(UIImage(named:"love0"), for: .normal)
+            loveMenu.remove(at:loveMenu.index(of : sender.tag)! )
         }
-    
+        UserDefaults.standard.set(loveMenu,forKey : "loveMenu")
+        tableView.reloadData()
+        print (loveMenu)
     }
     @IBAction func expand(_ sender: UIButton) {
         print(sender.tag)
@@ -104,30 +118,66 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         }
         self.tableView.reloadData()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        UserDefaults.standard.set(nickname , forKey:("nickname"))
-        parseLocalFile()
-        let count = (allData?.Top10Restaurant.restaurants.count)!
-        for _ in 1...count{
-            isOpen.append(0)
-        }
-        isOpen[0] = 1
-        for i in 0...count-1{
-            if allData?.Top10Restaurant.restaurants[i].restaurant_type == "\(prefer)"{
-                cellName.append((allData?.Top10Restaurant.restaurants[i].restaurant_name)!)
-                cellTime.append((allData?.Top10Restaurant.restaurants[i].restaurant_available_time)!)
-                cellAddress.append((allData?.Top10Restaurant.restaurants[i].restaurant_location
-                    )!)
-                cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
-                cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
+        func showPageSelction(){
+            let count = (allData?.Top10Restaurant.restaurants.count)!
+            for _ in 1...count{
+                isOpen.append(0)
             }
-        }
-        if prefer == 7{
+            isOpen[0] = 1
+            for i in 0...count-1{
+                if allData?.Top10Restaurant.restaurants[i].restaurant_type == "\(prefer)"{
+                    cellName.append((allData?.Top10Restaurant.restaurants[i].restaurant_name)!)
+                    cellTime.append((allData?.Top10Restaurant.restaurants[i].restaurant_available_time)!)
+                    cellAddress.append((allData?.Top10Restaurant.restaurants[i].restaurant_location
+                        )!)
+                    cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
+                    cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
+                }
+            }
+            if prefer == 7{
+                for i in loveMenu{
+                    cellName.append((allData?.Top10Restaurant.restaurants[i].restaurant_name)!)
+                    cellTime.append((allData?.Top10Restaurant.restaurants[i].restaurant_available_time)!)
+                    cellAddress.append((allData?.Top10Restaurant.restaurants[i].restaurant_location
+                        )!)
+                    cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
+                    cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
+                }
+                
+                topImg.image = UIImage(named :"prefer\(prefer)")
+                
+                
+            }
+                if prefer == 8 {
+                    selectBtn.isHidden = false
+                    for i in [0,5,14,8,4]{
+                        
+                        cellName.append((allData?.Top10Restaurant.restaurants[i].restaurant_name)!)
+                        cellTime.append((allData?.Top10Restaurant.restaurants[i].restaurant_available_time)!)
+                        cellAddress.append((allData?.Top10Restaurant.restaurants[i].restaurant_location
+                            )!)
+                        cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
+                        cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
+                    }
+                }
             
         }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        selectBtn.isHidden = true
+        
+        for item in UserDefaults.standard.array(forKey: "loveMenu")!{
+            print(item)
+            loveMenu.append(item as! Int)
+        }
+        print (loveMenu)
+        parseLocalFile()
+        
+        showPageSelction()
+        if prefer != 7{
         preferImg.image = UIImage(named : "prefer\(prefer)")
+        }
+        
 //        print(loveMenu)
         // Do any additional setup after loading the view.
     }
@@ -138,7 +188,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     fileprivate func parseLocalFile() {
         let jsonFilePath:String = Bundle.main.path(forResource: "top10Restauran", ofType: "txt")!
-        print(jsonFilePath)
+//        print(jsonFilePath)
         let url:URL = URL(fileURLWithPath: jsonFilePath)
         do {
             let jsonData:Data? = try Data(contentsOf: url)
@@ -148,7 +198,14 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         }
     }
     
-    /*
+    @IBAction func showSelectPage(_ sender: Any) {
+        let random = 0
+        self.delegate?.sendResultName(name: (allData?.Top10Restaurant.restaurants[random].restaurant_name)!)
+        self.delegate?.sendResultTime(time: (allData?.Top10Restaurant.restaurants[random].restaurant_available_time)!)
+        self.delegate?.sendResultPhone(phone: (allData?.Top10Restaurant.restaurants[random].restaurant_phone)!)
+        self.delegate?.sendResultAddress(address: (allData?.Top10Restaurant.restaurants[random].restaurant_location)!)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -156,6 +213,6 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

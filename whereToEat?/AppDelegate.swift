@@ -13,10 +13,14 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var check = UserDefaults.standard.array(forKey: "loveMenu")
 
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if check == nil{
+            UserDefaults.standard.set([],forKey: "loveMenu")
+        }
         return true
     }
 

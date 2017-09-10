@@ -22,8 +22,23 @@ class dataInfoTableViewCell: UITableViewCell {
         // Initialization code
         phoneNumber.isUserInteractionEnabled = true
         address.isUserInteractionEnabled = true
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapCall))
+        phoneNumber.addGestureRecognizer(tap)
     }
 
-
+    func call(phoneNum: String) {
+        if let url = URL(string: "tel://\(phoneNum)"), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+    
+    @objc func tapCall(sender:UITapGestureRecognizer) {
+        print("tap working")
+        call(phoneNum: phoneNumber.text!)//telephoneTextLabel.text
+    }
+   
 }
