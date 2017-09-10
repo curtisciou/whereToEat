@@ -17,6 +17,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     var cellTime:[String] = []
     var cellNumber:[String] = []
     var cellAddress:[String] = []
+    var loveMenu:[Int] = UserDefaults.standard.array(forKey: "loveMenu") as! [Int]
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var preferImg: UIImageView!
@@ -83,10 +84,12 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     @IBAction func loveIt(_ sender: UIButton) {
         if sender.imageView?.image == UIImage(named : "love0"){
             sender.setImage(UIImage(named:"love1"), for: .normal)
-            print(sender.tag)
+            loveMenu.append(sender.tag)
+//            print(sender.tag)
         }else{
             sender.setImage(UIImage(named:"love0"), for: .normal)
         }
+    
     }
     @IBAction func expand(_ sender: UIButton) {
         print(sender.tag)
@@ -104,7 +107,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        UserDefaults.standard.set(nickname , forKey:("nickname"))
         parseLocalFile()
         let count = (allData?.Top10Restaurant.restaurants.count)!
         for _ in 1...count{
@@ -121,8 +124,11 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
                 cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
             }
         }
+        if prefer == 7{
+            
+        }
         preferImg.image = UIImage(named : "prefer\(prefer)")
-
+//        print(loveMenu)
         // Do any additional setup after loading the view.
     }
 
@@ -141,7 +147,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
             print("\(error)")
         }
     }
-
+    
     /*
     // MARK: - Navigation
 

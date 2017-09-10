@@ -62,7 +62,7 @@ class HomeVC: UIViewController {
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        time = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
+//        time = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timeAction), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {

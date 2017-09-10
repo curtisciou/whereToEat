@@ -20,7 +20,7 @@ class RandomVC: UIViewController,UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eggCollectionViewCell", for: indexPath) as! EggCollectionViewCell
-//        cell.eggImg.image = UIImage(named: "egg.jpg")
+        cell.eggImg.image = UIImage(named: "egg\(arc4random_uniform(4))")
         return cell
     }
     
