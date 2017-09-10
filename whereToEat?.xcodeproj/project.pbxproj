@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E542B051F65C78A0076CB48 /* CreatSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E542B041F65C78A0076CB48 /* CreatSelectVC.swift */; };
 		4E7891A61F627E50006CE780 /* EggCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891A51F627E50006CE780 /* EggCollectionViewCell.swift */; };
 		4E7891A71F6288B9006CE780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E78919F1F627BDD006CE780 /* Assets.xcassets */; };
 		4E7891AD1F629890006CE780 /* DataFiliterVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7891AC1F629890006CE780 /* DataFiliterVCViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E542B041F65C78A0076CB48 /* CreatSelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatSelectVC.swift; sourceTree = "<group>"; };
 		4E78919F1F627BDD006CE780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E7891A01F627BDD006CE780 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E7891A21F627BDD006CE780 /* whereToEat_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = whereToEat_.xcdatamodel; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				7F0ABBEA1F5B03CD00C23A71 /* Main.storyboard */,
 				7F0ABBE61F5B03CD00C23A71 /* AppDelegate.swift */,
 				7F0ABC221F5B042300C23A71 /* WelcomVC.swift */,
+				4E542B041F65C78A0076CB48 /* CreatSelectVC.swift */,
 				7F0ABC1B1F5B042100C23A71 /* AddResturantVC.swift */,
 				7F0ABC211F5B042200C23A71 /* PersonalPreferencesVC.swift */,
 				7F0ABC1A1F5B042100C23A71 /* PreferencesShowAndSelectVC.swift */,
@@ -310,6 +313,7 @@
 				7F0ABC231F5B042300C23A71 /* MapVC.swift in Sources */,
 				7FC651431F6228DF000128E1 /* DifferentCategoryVC.swift in Sources */,
 				4E7891AF1F629AA8006CE780 /* dataFilterTableViewCell.swift in Sources */,
+				4E542B051F65C78A0076CB48 /* CreatSelectVC.swift in Sources */,
 				4E7891AD1F629890006CE780 /* DataFiliterVCViewController.swift in Sources */,
 				7F0ABC261F5B042300C23A71 /* AddResturantVC.swift in Sources */,
 				4E7891A61F627E50006CE780 /* EggCollectionViewCell.swift in Sources */,

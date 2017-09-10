@@ -9,6 +9,13 @@
 import UIKit
 
 class RestaurantDetailVC: UIViewController {
+    var tag = -1
+    var loveMenu:[Int] = []
+    var name = ""
+    var address = ""
+    var time = ""
+    var phone = ""
+    
     @IBOutlet weak var loveBtn: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -16,19 +23,40 @@ class RestaurantDetailVC: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
   
     @IBOutlet weak var addressLabel: UILabel!
-    var delegate : receiveResultProtocol?
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let dataVC :DataFiliterVCViewController = DataFiliterVCViewController()
+//        
+//        dataVC.delegate = self
         
+        for item in UserDefaults.standard.array(forKey: "loveMenu")!{
+            print(item)
+            loveMenu.append(item as! Int)
+        }
         
+        nameLabel.text = name
+        numberLabel.text = phone
+        timeLabel.text = time
+        addressLabel.text = address
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    @IBAction func loveIt(_ sender: Any) {
+    @IBAction func loveIt(_ sender: UIButton) {
+        if sender.imageView?.image == UIImage(named : "love0"){
+            sender.setImage(UIImage(named:"love1"), for: .normal)
+            loveMenu.append(tag)
+            //            print(sender.tag)
+        }else{
+            sender.setImage(UIImage(named:"love0"), for: .normal)
+            loveMenu.remove(at:loveMenu.index(of : tag)! )
+        }
+        UserDefaults.standard.set(loveMenu,forKey : "loveMenu")
+        print (loveMenu)
     }
     
 }

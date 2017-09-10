@@ -7,12 +7,7 @@
 //
 
 import UIKit
-protocol sendResultDelegate{
-    func sendResultName( name:String)
-    func sendResultPhone( phone:String)
-    func sendResultAddress( address:String)
-    func sendResultTime( time:String)
-}
+
 class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var prefer: Int = -1
     var allData :Top10Structure?
@@ -23,7 +18,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     var cellNumber:[String] = []
     var cellAddress:[String] = []
     var loveMenu:[Int] = []
-    var delegate :sendResultDelegate?
+
     var rgb:[(CGFloat,CGFloat,CGFloat,CGFloat)] = [(248,251,253,0.95),(124,180,176,0.07),(186,229,216,0.07),(238,211,88, 0.07),(157, 144,175, 0.07),(242,179,169, 0.07),(108,136,177, 0.1),(43,116,127, 0.1)]
     
     @IBOutlet weak var selectBtn: UIButton!
@@ -178,8 +173,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         preferImg.image = UIImage(named : "prefer\(prefer)")
         }
         
-//        print(loveMenu)
-        // Do any additional setup after loading the view.
+     
     }
 
     override func didReceiveMemoryWarning() {
@@ -199,20 +193,24 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     @IBAction func showSelectPage(_ sender: Any) {
-        let random = 0
-        self.delegate?.sendResultName(name: (allData?.Top10Restaurant.restaurants[random].restaurant_name)!)
-        self.delegate?.sendResultTime(time: (allData?.Top10Restaurant.restaurants[random].restaurant_available_time)!)
-        self.delegate?.sendResultPhone(phone: (allData?.Top10Restaurant.restaurants[random].restaurant_phone)!)
-        self.delegate?.sendResultAddress(address: (allData?.Top10Restaurant.restaurants[random].restaurant_location)!)
+        
+        self.performSegue(withIdentifier: "toRestVC", sender: nil)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRestVC" {
+            let random = Int(arc4random_uniform(4))
+            let nextVC:RandomVC =  segue.destination as! RandomVC
+            
+            nextVC.namer = (allData?.Top10Restaurant.restaurants[random].restaurant_name)!
+            nextVC.timer = (allData?.Top10Restaurant.restaurants[random].restaurant_available_time)!
+            nextVC.phoner = (allData?.Top10Restaurant.restaurants[random].restaurant_phone)!
+            nextVC.addressr = (allData?.Top10Restaurant.restaurants[random].restaurant_location)!
+            nextVC.tagr = random
+        }
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    
+  
 
 }

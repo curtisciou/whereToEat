@@ -12,7 +12,11 @@ class RandomVC: UIViewController,UICollectionViewDataSource,UICollectionViewDele
     @IBOutlet weak var collectionView: UICollectionView!
     
     var longPressGesture = UILongPressGestureRecognizer()
-
+    var tagr = 0
+    var namer = ""
+    var addressr = ""
+    var timer = ""
+    var phoner = ""
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 18
@@ -61,6 +65,18 @@ class RandomVC: UIViewController,UICollectionViewDataSource,UICollectionViewDele
             
         }
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toResturantDetailVC" {
+            
+            let nextVC:RestaurantDetailVC =  segue.destination as! RestaurantDetailVC
+            
+            nextVC.name = namer
+            nextVC.time = timer
+            nextVC.phone = phoner
+            nextVC.address = addressr
+            nextVC.tag = tagr
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
