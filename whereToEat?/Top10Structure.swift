@@ -1,8 +1,8 @@
 //
 //  Top10Structure.swift
-//  lunch?
+//  whereToEat?
 //
-//  Created by CurtisCiou on 2017/9/2.
+//  Created by CurtisCiou on 2017/9/8.
 //  Copyright © 2017年 CurtisCiou. All rights reserved.
 //
 //CAUTION!!! TEST JSON FILE USED

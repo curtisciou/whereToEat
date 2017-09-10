@@ -1,8 +1,8 @@
 //
-//  ResturantDetailVC.swift
-//  lunch?
+//  RestaurantDetailVC.swift
+//  whereToEat?
 //
-//  Created by CurtisCiou on 2017/9/1.
+//  Created by CurtisCiou on 2017/9/8.
 //  Copyright © 2017年 CurtisCiou. All rights reserved.
 //
 
