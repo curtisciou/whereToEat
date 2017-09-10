@@ -23,6 +23,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
     
     @IBOutlet weak var selectBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var creatBtn: UIButton!
     
     @IBOutlet weak var topImg: UIImageView!
     @IBOutlet weak var preferImg: UIImageView!
@@ -76,7 +77,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
 //        footerView.backgroundColor = UIColor.white
 //
 //        return footerView
-//    }
+//    } 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -129,7 +130,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
                     cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
                 }
             }
-            if prefer == 7{
+            if prefer == 7  {
                 for i in loveMenu{
                     cellName.append((allData?.Top10Restaurant.restaurants[i].restaurant_name)!)
                     cellTime.append((allData?.Top10Restaurant.restaurants[i].restaurant_available_time)!)
@@ -154,13 +155,14 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
                         cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
                         cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
                     }
+                    
                 }
             
         }
     override func viewDidLoad() {
         super.viewDidLoad()
         selectBtn.isHidden = true
-        
+        creatBtn.isHidden = true
         for item in UserDefaults.standard.array(forKey: "loveMenu")!{
             print(item)
             loveMenu.append(item as! Int)
@@ -169,7 +171,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         parseLocalFile()
         
         showPageSelction()
-        if prefer != 7{
+        if prefer != 7 {
         preferImg.image = UIImage(named : "prefer\(prefer)")
         }
         
@@ -196,6 +198,10 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         
         self.performSegue(withIdentifier: "toRestVC", sender: nil)
     }
+    
+    @IBAction func creatAction(_ sender: Any) {
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRestVC" {
             let random = Int(arc4random_uniform(4))

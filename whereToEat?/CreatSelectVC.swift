@@ -8,11 +8,35 @@
 
 import UIKit
 
-class CreatSelectVC: UIViewController {
-
+class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
+    @IBOutlet weak var tableView: UITableView!
+    var preferSelect = 0
+    var tableViewArray:[String] = []
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableViewArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath)
+        cell.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.98, alpha:1.0)
+        cell.textLabel?.text = tableViewArray[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 7
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            tableViewArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+            tableView.reloadData()
+        }
+    }
+    @IBOutlet weak var inputTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//            tableView.isEditing = true
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +45,28 @@ class CreatSelectVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func inputToTableView(_ sender: Any) {
+        if inputTextField.text != ""{
+            tableViewArray.append(inputTextField.text!)
+            tableView.reloadData()
+            inputTextField.text = ""
+        }else{
+            let alert : UIAlertController = UIAlertController(title :"錯誤",message :"輸入欄位不可為空白",preferredStyle : .alert)
+            let cancel = UIAlertAction(
+                title: "確定",
+                style: .default,
+                handler: {
+                    (action: UIAlertAction!) -> Void in
+                    print("按下確認後，閉包裡的動作")
+            })
+            alert.addAction(cancel)
+        }
+    }
+    
+    @IBAction func searchForLove(_ sender: Any) {
+        preferSelect = 9
+        performSegue(withIdentifier: "toPreferVC", sender: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -32,4 +77,33 @@ class CreatSelectVC: UIViewController {
     }
     */
 
+    @IBAction func toSelectPage(_ sender: Any) {
+        if tableViewArray.count != 0{
+            self.performSegue(withIdentifier: "toRandomVC", sender: nil)
+        }else{
+            let alert : UIAlertController = UIAlertController(title :"錯誤",message :"不可沒有任何店家",preferredStyle : .alert)
+            let cancel = UIAlertAction(
+                title: "確定",
+                style: .default,
+                handler: {
+                    (action: UIAlertAction!) -> Void in
+                    print("按下確認後，閉包裡的動作")
+            })
+            alert.addAction(cancel)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRandomVC" {
+            let random = Int(arc4random_uniform(UInt32(tableViewArray.count-1)))
+            let nextVC:RandomVC =  segue.destination as! RandomVC
+
+            nextVC.namer = tableViewArray[random]
+
+        }
+        if segue.identifier == "toPreferVC" {
+            let secondVC:DataFiliterVCViewController =  segue.destination as! DataFiliterVCViewController
+            
+            secondVC.prefer = preferSelect
+        }
+    }
 }
