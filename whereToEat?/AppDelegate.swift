@@ -14,13 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var check = UserDefaults.standard.array(forKey: "loveMenu")
-
+    var check2 = UserDefaults.standard.array(forKey: "wanTo")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         if check == nil {
             UserDefaults.standard.set([],forKey: "loveMenu")
         }
+        if check2 == nil {
+            UserDefaults.standard.set([],forKey: "wantTo")
+        }
+//        UserDefaults.standard.set([],forKey: "loveMenu")
+//        UserDefaults.standard.set([],forKey: "wantTo")
         return true
     }
 

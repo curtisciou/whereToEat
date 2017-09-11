@@ -161,6 +161,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
         }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
         selectBtn.isHidden = true
         creatBtn.isHidden = true
         for item in UserDefaults.standard.array(forKey: "loveMenu")!{

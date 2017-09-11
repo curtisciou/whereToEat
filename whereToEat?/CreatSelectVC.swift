@@ -29,6 +29,7 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         if editingStyle == .delete{
             tableViewArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
+            UserDefaults.standard.set(tableViewArray,forKey:"wantTo")
             tableView.reloadData()
         }
     }
@@ -36,8 +37,12 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
 //            tableView.isEditing = true
         // Do any additional setup after loading the view.
+        for item in UserDefaults.standard.array(forKey: "wantTo")!{
+            tableViewArray.append(item as! String)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +55,7 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
             tableViewArray.append(inputTextField.text!)
             tableView.reloadData()
             inputTextField.text = ""
+            UserDefaults.standard.set(tableViewArray,forKey:"wantTo")
         }else{
             let alert : UIAlertController = UIAlertController(title :"錯誤",message :"輸入欄位不可為空白",preferredStyle : .alert)
             let cancel = UIAlertAction(
@@ -64,7 +70,7 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
     }
     
     @IBAction func searchForLove(_ sender: Any) {
-        preferSelect = 9
+        
         performSegue(withIdentifier: "toPreferVC", sender: nil)
     }
     /*
@@ -80,6 +86,7 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
     @IBAction func toSelectPage(_ sender: Any) {
         if tableViewArray.count != 0{
             self.performSegue(withIdentifier: "toRandomVC", sender: nil)
+            UserDefaults.standard.set([],forKey:"wantTo")
         }else{
             let alert : UIAlertController = UIAlertController(title :"錯誤",message :"不可沒有任何店家",preferredStyle : .alert)
             let cancel = UIAlertAction(
@@ -101,9 +108,9 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
 
         }
         if segue.identifier == "toPreferVC" {
-            let secondVC:DataFiliterVCViewController =  segue.destination as! DataFiliterVCViewController
-            
-            secondVC.prefer = preferSelect
+            let secondVC:DifferentCategoryVC =  segue.destination as! DifferentCategoryVC
+
+            secondVC.arrayList = tableViewArray
         }
     }
 }

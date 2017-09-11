@@ -27,11 +27,12 @@ class RestaurantDetailVC: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 //        let dataVC :DataFiliterVCViewController = DataFiliterVCViewController()
 //        
 //        dataVC.delegate = self
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         for item in UserDefaults.standard.array(forKey: "loveMenu")!{
             print(item)
             loveMenu.append(item as! Int)
