@@ -139,7 +139,7 @@ class DataFiliterVCViewController: UIViewController,UITableViewDataSource,UITabl
                     cellId.append(Int((allData?.Top10Restaurant.restaurants[i].restaurant_identification)!)!)
                     cellNumber.append((allData?.Top10Restaurant.restaurants[i].restaurant_phone)!)
                 }
-                
+                 self.navigationController?.navigationBar.tintColor = UIColor.white
                 topImg.image = UIImage(named :"prefer\(prefer)")
                 
                 

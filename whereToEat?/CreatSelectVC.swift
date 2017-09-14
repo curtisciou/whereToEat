@@ -8,14 +8,16 @@
 
 import UIKit
 
-class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate{
     @IBOutlet weak var tableView: UITableView!
     var preferSelect = 0
     var tableViewArray:[String] = []
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewArray.count
     }
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        endKey.isHidden = false
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath)
         cell.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.98, alpha:1.0)
@@ -50,6 +52,7 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var endKey: UIButton!
     @IBAction func inputToTableView(_ sender: Any) {
         if inputTextField.text != ""{
             tableViewArray.append(inputTextField.text!)
@@ -82,7 +85,12 @@ class CreatSelectVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func endKeyBoard(_ sender: Any) {
+        self.view.endEditing(true)
+        endKey.isHidden = true
+        
+    }
+    
     @IBAction func toSelectPage(_ sender: Any) {
         if tableViewArray.count != 0{
             self.performSegue(withIdentifier: "toRandomVC", sender: nil)
